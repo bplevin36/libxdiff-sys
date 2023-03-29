@@ -5,6 +5,8 @@ edition = "2021"
 description = "Raw bindings to a vendored version of libxdiff"
 documentation = "http://www.xmailserver.org/xdiff-lib.html"  # C library docs
 categories = ["external-ffi-bindings"]
+repository = "https://github.com/bplevin36/libxdiff-sys"
+homepage = "https://github.com/bplevin36/libxdiff-sys"
 
 [dependencies]
 libc = "0.2.139"
