@@ -8,9 +8,26 @@ use bindgen::CargoCallbacks;
 const VENDORED: &'static str = "./libxdiff-0.23";
 
 fn main() {
-    let libxdiff_path = PathBuf::from(VENDORED)
+    let starting_libxdiff_path = PathBuf::from(VENDORED)
         .canonicalize()
         .expect("cannot canonicalize path");
+
+    // copy src into build directory before building
+    let libxdiff_path = PathBuf::from(env::var("OUT_DIR").unwrap()).join("libxdiff-src");
+    match std::process::Command::new("cp")
+        .current_dir(".")
+        .arg("-r")
+        .arg(starting_libxdiff_path)
+        .arg(&libxdiff_path)
+        .output()
+    {
+        Ok(_) => (),
+        Err(e) => {
+            eprintln!("{}", e);
+            panic!("could not configure");
+        },
+    };
+
 
     let xdiff_path = libxdiff_path.join("xdiff");
     let header_path = xdiff_path.join("xdiff.h");

@@ -7,6 +7,7 @@ documentation = "http://www.xmailserver.org/xdiff-lib.html"  # C library docs
 categories = ["external-ffi-bindings"]
 repository = "https://github.com/bplevin36/libxdiff-sys"
 homepage = "https://github.com/bplevin36/libxdiff-sys"
+license = "LGPL"
 
 [dependencies]
 libc = "0.2.139"
